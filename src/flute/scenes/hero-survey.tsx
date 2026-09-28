@@ -6,8 +6,8 @@ import { HomeHero } from "@/components/site/home/HomeSections";
 /** The live landing hero as one monumental surface. */
 export default function HeroSurvey() {
   return (
-    <Surface id="landing" style={{ width: 1440, height: 900 }}>
-      <div className="h-full overflow-hidden bg-bg">
+    <Surface id="landing" style={{ width: 1920, height: 1080 }}>
+      <div className="overflow-hidden bg-bg" style={{ height: 1080 }}>
         <Header />
         <HomeHero />
       </div>

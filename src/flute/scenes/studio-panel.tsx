@@ -15,8 +15,8 @@ const SAMPLES: Sample[] = (["living-dated", "kitchen-dated", "empty-room", "bedr
 /** The real studio: photo on the left, settings panel on the right. */
 export default function StudioPanel() {
   return (
-    <Surface id="studio" style={{ width: 1440, height: 1040 }}>
-      <div className="h-full overflow-hidden bg-bg">
+    <Surface id="studio" style={{ width: 1920, height: 1320 }}>
+      <div className="overflow-hidden bg-bg" style={{ height: 1320 }}>
         <AppNav email="you@example.com" usage={{ used: 3, limit: 20 }} admin={false} />
         <div className="mx-auto w-full max-w-7xl px-8 py-8">
           <h1 className="mb-8 text-4xl text-ink">New design</h1>

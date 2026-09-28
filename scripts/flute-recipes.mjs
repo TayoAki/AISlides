@@ -1,6 +1,8 @@
 // Writes the Flute promo scene recipes. Tweak camera/focus/motion here, then run:
 //   node scripts/flute-recipes.mjs && npx flute sync
-import { writeFileSync } from "node:fs";
+// Library thumbnails are kept while a scene's definition is unchanged; after changing one,
+// refresh it with: npx flute snapshot --scene <id> --url http://localhost:3000
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createCascadeTracks } from "@webprodigies/flute";
 
 const TOOL_IDS = ["redesign", "virtual-staging", "decor-staging", "declutter", "paint", "materials", "sky", "sketch", "edit", "style-transfer", "text-to-design", "furniture-creator"];
@@ -25,11 +27,11 @@ const focus = (from, to, durationMs) => ({
 // perspective + camera.z * cos(rotateY) * cos(rotateX) along the viewing axis.
 const centerDepth = (c) => Math.round(c.perspective + c.z * Math.cos((c.rotateY * Math.PI) / 180) * Math.cos((c.rotateX * Math.PI) / 180));
 
-const heroCam = { x: -250, y: -130, z: 0, perspective: 1400, rotateX: 4, rotateY: 22, rotateZ: 0 };
-const studioCam = { x: 290, y: -110, z: -170, perspective: 1400, rotateX: 8, rotateY: -16, rotateZ: 0 };
+const heroCam = { x: -170, y: -170, z: -240, perspective: 1400, rotateX: 4, rotateY: 22, rotateZ: 0 };
+const studioCam = { x: 250, y: -150, z: -150, perspective: 1400, rotateX: 8, rotateY: -16, rotateZ: 0 };
 const toolsCam = { x: -90, y: 40, z: -50, perspective: 1500, rotateX: 16, rotateY: 12, rotateZ: 0 };
 const ctaCam = { x: -240, y: -220, z: 260, perspective: 1600, rotateX: 3, rotateY: -6, rotateZ: 0 };
-const pricingCam = { x: -300, y: 20, z: -20, perspective: 1500, rotateX: 6, rotateY: 16, rotateZ: 0 };
+const pricingCam = { x: -330, y: 20, z: -200, perspective: 1500, rotateX: 6, rotateY: 16, rotateZ: 0 };
 
 const recipes = [
   {
@@ -44,7 +46,7 @@ const recipes = [
       motion: {
         durationMs: 6500,
         speed: 0.5,
-        tracks: [cam("x", -250, 240, 6500), cam("z", 0, -90, 6500), focus(centerDepth(heroCam), centerDepth({ ...heroCam, z: -90 }), 6500)],
+        tracks: [cam("x", -170, 170, 6500), cam("z", -240, -300, 6500), focus(centerDepth(heroCam), centerDepth({ ...heroCam, z: -300 }), 6500)],
       },
     },
   },
@@ -57,7 +59,7 @@ const recipes = [
       width: 1920,
       height: 1080,
       scene: { version: 3, camera: studioCam, focus: { distance: centerDepth(studioCam), fStop: 7, focalLength: 90, maxBlur: 5 }, nodes: [{ id: "studio" }] },
-      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("y", -110, 250, 6500)] },
+      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("y", -150, 380, 6500)] },
     },
   },
   {
@@ -94,7 +96,7 @@ const recipes = [
       width: 1920,
       height: 1080,
       scene: { version: 3, camera: pricingCam, focus: { distance: centerDepth(pricingCam), fStop: 8, focalLength: 90, maxBlur: 5 }, nodes: [{ id: "pricing" }] },
-      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("x", -300, 300, 6500)] },
+      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("x", -330, 330, 6500)] },
     },
   },
   {
@@ -116,6 +118,9 @@ const recipes = [
 ];
 
 for (const r of recipes) {
-  writeFileSync(new URL(`../src/flute/scenes/${r.id}.scene.json`, import.meta.url), JSON.stringify(r, null, 2) + "\n");
-  console.log("wrote", r.id);
+  const file = new URL(`../src/flute/scenes/${r.id}.scene.json`, import.meta.url);
+  const previous = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : null;
+  const unchanged = previous?.snapshot && JSON.stringify(previous.definition) === JSON.stringify(r.definition);
+  writeFileSync(file, JSON.stringify(unchanged ? { ...r, snapshot: previous.snapshot } : r, null, 2) + "\n");
+  console.log("wrote", r.id, unchanged ? "(kept thumbnail)" : previous?.snapshot ? "(thumbnail is stale: re-run flute snapshot)" : "");
 }

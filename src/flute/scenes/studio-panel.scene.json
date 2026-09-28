@@ -9,16 +9,16 @@
     "scene": {
       "version": 3,
       "camera": {
-        "x": 290,
-        "y": -110,
-        "z": -170,
+        "x": 250,
+        "y": -150,
+        "z": -150,
         "perspective": 1400,
         "rotateX": 8,
         "rotateY": -16,
         "rotateZ": 0
       },
       "focus": {
-        "distance": 1238,
+        "distance": 1257,
         "fStop": 7,
         "focalLength": 90,
         "maxBlur": 5
@@ -41,12 +41,12 @@
           "keyframes": [
             {
               "timeMs": 0,
-              "value": -110,
+              "value": -150,
               "easing": "cinematic"
             },
             {
               "timeMs": 6500,
-              "value": 250,
+              "value": 380,
               "easing": "cinematic"
             }
           ]
