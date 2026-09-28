@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "id": "pricing-survey",
+  "title": "Free while in beta",
+  "description": "A slow survey along the pricing plans, with focus riding the cards.",
+  "definition": {
+    "width": 1920,
+    "height": 1080,
+    "scene": {
+      "version": 3,
+      "camera": {
+        "x": -260,
+        "y": 80,
+        "z": 420,
+        "perspective": 1600,
+        "rotateX": 8,
+        "rotateY": 18,
+        "rotateZ": 0
+      },
+      "focus": {
+        "distance": 1200,
+        "fStop": 6.3,
+        "focalLength": 90,
+        "maxBlur": 5
+      },
+      "nodes": [
+        {
+          "id": "pricing"
+        }
+      ]
+    },
+    "motion": {
+      "durationMs": 6500,
+      "speed": 0.5,
+      "tracks": [
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "x",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": -320,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 300,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "focus"
+          },
+          "property": "distance",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 1180,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 1240,
+              "easing": "cinematic"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

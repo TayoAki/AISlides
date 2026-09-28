@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "id": "tools-plating",
+  "title": "Twelve tools, one studio",
+  "description": "The real tool cards settle into the toolkit grid while the camera glides across it.",
+  "definition": {
+    "width": 1920,
+    "height": 1080,
+    "scene": {
+      "version": 3,
+      "camera": {
+        "x": -120,
+        "y": 40,
+        "z": 260,
+        "perspective": 1700,
+        "rotateX": 14,
+        "rotateY": 14,
+        "rotateZ": 0
+      },
+      "focus": {
+        "distance": 1440,
+        "fStop": 8,
+        "focalLength": 80,
+        "maxBlur": 5
+      },
+      "nodes": [
+        {
+          "id": "toolkit"
+        },
+        {
+          "id": "tool-redesign",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-virtual-staging",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-decor-staging",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-declutter",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-paint",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-materials",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-sky",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-sketch",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-edit",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-style-transfer",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-text-to-design",
+          "parentId": "toolkit"
+        },
+        {
+          "id": "tool-furniture-creator",
+          "parentId": "toolkit"
+        }
+      ]
+    },
+    "motion": {
+      "durationMs": 6500,
+      "speed": 0.5,
+      "tracks": [
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-redesign"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 320,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2200,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-virtual-staging"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 346,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 150,
+              "value": 346,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2350,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-decor-staging"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 372,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 300,
+              "value": 372,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2500,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-declutter"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 398,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 450,
+              "value": 398,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2650,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-paint"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 424,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 600,
+              "value": 424,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2800,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-materials"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 450,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 750,
+              "value": 450,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 2950,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-sky"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 476,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 900,
+              "value": 476,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3100,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-sketch"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 502,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 1050,
+              "value": 502,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3250,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-edit"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 528,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 1200,
+              "value": 528,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3400,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-style-transfer"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 554,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 1350,
+              "value": 554,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3550,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-text-to-design"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 580,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 1500,
+              "value": 580,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3700,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "surface",
+            "id": "tool-furniture-creator"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 606,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 1650,
+              "value": 606,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 3850,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "x",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": -220,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 160,
+              "easing": "cinematic"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

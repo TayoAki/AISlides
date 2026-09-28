@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "id": "studio-panel",
+  "title": "Pick a tool and a style",
+  "description": "A detail shot that travels down the real studio settings: tool, style, strength and generate.",
+  "definition": {
+    "width": 1920,
+    "height": 1080,
+    "scene": {
+      "version": 3,
+      "camera": {
+        "x": 260,
+        "y": -120,
+        "z": 520,
+        "perspective": 1500,
+        "rotateX": 10,
+        "rotateY": -18,
+        "rotateZ": 0
+      },
+      "focus": {
+        "distance": 1120,
+        "fStop": 5.6,
+        "focalLength": 90,
+        "maxBlur": 5
+      },
+      "nodes": [
+        {
+          "id": "studio"
+        }
+      ]
+    },
+    "motion": {
+      "durationMs": 6500,
+      "speed": 0.5,
+      "tracks": [
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "y",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": -220,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 240,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "x",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 300,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 230,
+              "easing": "cinematic"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
