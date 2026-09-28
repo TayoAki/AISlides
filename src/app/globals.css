@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+/* Roomwright design tokens: linen, evergreen and clay. */
+:root {
+  --bg: #f6f2ea;
+  --bg-deep: #efe8dc;
+  --surface: #fffdf9;
+  --surface-2: #fbf7f0;
+  --ink: #1b1f1d;
+  --ink-2: #3d433f;
+  --muted: #6a706b;
+  --line: #e3dccf;
+  --line-strong: #cfc6b6;
+  --brand: #1e5b4b;
+  --brand-strong: #154236;
+  --brand-soft: #dcebe4;
+  --brand-ink: #ffffff;
+  --accent: #c8643f;
+  --accent-strong: #a64e2d;
+  --accent-soft: #f6e0d4;
+  --gold: #b8914e;
+  --ok: #2f7d5b;
+  --warn: #b7791f;
+  --danger: #b4432f;
+  --shadow: 28 24 18;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1311;
+    --bg-deep: #0a0e0c;
+    --surface: #151c19;
+    --surface-2: #19211d;
+    --ink: #eee9df;
+    --ink-2: #d2ccc0;
+    --muted: #a0a69e;
+    --line: #26302b;
+    --line-strong: #36423c;
+    --brand: #6cc1a5;
+    --brand-strong: #8fd6bd;
+    --brand-soft: #173229;
+    --brand-ink: #0b1411;
+    --accent: #e68a64;
+    --accent-strong: #f0a585;
+    --accent-soft: #3a2219;
+    --gold: #d9b774;
+    --ok: #6cc1a5;
+    --warn: #e0b060;
+    --danger: #ef8a74;
+    --shadow: 0 0 0;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1311;
+  --bg-deep: #0a0e0c;
+  --surface: #151c19;
+  --surface-2: #19211d;
+  --ink: #eee9df;
+  --ink-2: #d2ccc0;
+  --muted: #a0a69e;
+  --line: #26302b;
+  --line-strong: #36423c;
+  --brand: #6cc1a5;
+  --brand-strong: #8fd6bd;
+  --brand-soft: #173229;
+  --brand-ink: #0b1411;
+  --accent: #e68a64;
+  --accent-strong: #f0a585;
+  --accent-soft: #3a2219;
+  --gold: #d9b774;
+  --ok: #6cc1a5;
+  --warn: #e0b060;
+  --danger: #ef8a74;
+  --shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --shadow-soft: 0 1px 2px rgb(var(--shadow) / 0.06), 0 8px 24px -12px rgb(var(--shadow) / 0.18);
+  --shadow-lift: 0 2px 4px rgb(var(--shadow) / 0.06), 0 24px 48px -20px rgb(var(--shadow) / 0.35);
+  --radius-card: 1.25rem;
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Long-form text rendered from content blocks. */
+.prose-rw {
+  color: var(--ink-2);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-rw h2 {
+  color: var(--ink);
+  font-size: 1.75rem;
+  line-height: 1.25;
+  margin: 2.5rem 0 0.75rem;
+}
+.prose-rw h3 {
+  color: var(--ink);
+  font-size: 1.3rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.5rem;
+}
+.prose-rw p {
+  margin: 0 0 1.1rem;
+}
+.prose-rw ul,
+.prose-rw ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.4rem;
+}
+.prose-rw ul {
+  list-style: disc;
+}
+.prose-rw ol {
+  list-style: decimal;
+}
+.prose-rw li {
+  margin: 0.35rem 0;
+  padding-left: 0.2rem;
+}
+.prose-rw li::marker {
+  color: var(--brand);
+}
+.prose-rw a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-rw strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.prose-rw blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.1rem;
+  margin: 1.5rem 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+/* Subtle grain used on hero backgrounds. */
+.bg-grain {
+  background-image: radial-gradient(circle at 20% 10%, color-mix(in oklab, var(--brand-soft) 70%, transparent) 0, transparent 45%),
+    radial-gradient(circle at 85% 0%, color-mix(in oklab, var(--accent-soft) 80%, transparent) 0, transparent 40%);
+}
+
+@keyframes rw-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.rw-shimmer {
+  background: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--surface) 70%, transparent) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: rw-shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rw-shimmer {
+    animation: none;
+  }
+}
