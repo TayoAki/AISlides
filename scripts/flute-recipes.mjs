@@ -26,7 +26,7 @@ const focus = (from, to, durationMs) => ({
 const centerDepth = (c) => Math.round(c.perspective + c.z * Math.cos((c.rotateY * Math.PI) / 180) * Math.cos((c.rotateX * Math.PI) / 180));
 
 const heroCam = { x: -250, y: -130, z: 0, perspective: 1400, rotateX: 4, rotateY: 22, rotateZ: 0 };
-const studioCam = { x: 360, y: -110, z: -170, perspective: 1400, rotateX: 8, rotateY: -16, rotateZ: 0 };
+const studioCam = { x: 290, y: -110, z: -170, perspective: 1400, rotateX: 8, rotateY: -16, rotateZ: 0 };
 const toolsCam = { x: -90, y: 40, z: -50, perspective: 1500, rotateX: 16, rotateY: 12, rotateZ: 0 };
 const ctaCam = { x: -240, y: -220, z: 260, perspective: 1600, rotateX: 3, rotateY: -6, rotateZ: 0 };
 const pricingCam = { x: -300, y: 20, z: -20, perspective: 1500, rotateX: 6, rotateY: 16, rotateZ: 0 };

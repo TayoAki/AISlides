@@ -167,9 +167,11 @@ r = await req(`/api/renders/${first.id}/rerun`, json({}));
 body = await r.json();
 check(r.status === 429 && body.error.code === "rate_limited", "daily allowance is enforced", body);
 
-// Leads
-r = await req("/api/leads", json({ kind: "support", email, name: "E2E", message: "Testing the help form" }));
-check(r.status === 200, "help form submission is stored");
+// Leads (SKIP_LEADS=1 avoids leaving a test message in a live admin inbox)
+if (!process.env.SKIP_LEADS) {
+  r = await req("/api/leads", json({ kind: "support", email, name: "E2E", message: "Testing the help form" }));
+  check(r.status === 200, "help form submission is stored");
+}
 r = await req("/api/leads", json({ kind: "support", email: "not-an-email" }));
 check(r.status === 400, "invalid lead email is rejected");
 

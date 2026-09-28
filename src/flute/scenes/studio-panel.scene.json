@@ -9,7 +9,7 @@
     "scene": {
       "version": 3,
       "camera": {
-        "x": 360,
+        "x": 290,
         "y": -110,
         "z": -170,
         "perspective": 1400,
