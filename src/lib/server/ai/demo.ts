@@ -16,10 +16,10 @@ const assets = () =>
 
 function grade(style = "") {
   const s = style.toLowerCase();
-  if (/(coastal|scandi|minimal|japandi|wabi)/.test(s)) return { brightness: 1.08, saturation: 0.82, tint: { r: 244, g: 240, b: 232 } };
-  if (/(industrial|dark|art deco|tudor)/.test(s)) return { brightness: 0.92, saturation: 0.9, tint: { r: 214, g: 205, b: 196 } };
-  if (/(boho|bohemian|mediterranean|rustic|farmhouse|desert|spanish)/.test(s)) return { brightness: 1.02, saturation: 1.08, tint: { r: 250, g: 226, b: 205 } };
-  return { brightness: 1.03, saturation: 0.95, tint: { r: 238, g: 242, b: 236 } };
+  if (/(coastal|scandi|minimal|japandi|wabi)/.test(s)) return { brightness: 1.07, saturation: 0.86, wash: { r: 238, g: 222, b: 196 } };
+  if (/(industrial|dark|art deco|tudor)/.test(s)) return { brightness: 0.95, saturation: 0.9, wash: { r: 72, g: 82, b: 98 } };
+  if (/(boho|bohemian|mediterranean|rustic|farmhouse|desert|spanish)/.test(s)) return { brightness: 1.02, saturation: 1.08, wash: { r: 226, g: 150, b: 102 } };
+  return { brightness: 1.03, saturation: 0.96, wash: { r: 170, g: 196, b: 180 } };
 }
 
 async function placeholder(input: ProviderInput) {
@@ -42,14 +42,18 @@ export const demoProvider: ImageProvider = {
     const { data, info } = await sharp(input.image)
       .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
       .modulate({ brightness: g.brightness, saturation: g.saturation })
-      .tint(g.tint)
       .jpeg({ quality: 90 })
       .toBuffer({ resolveWithObject: true });
+    // A soft-light color wash shifts the mood but keeps the photo's own colors.
+    const wash = { create: { width: info.width, height: info.height, channels: 4 as const, background: { ...g.wash, alpha: 0.35 } } };
     const { badge } = await assets();
     const margin = Math.round(info.width * 0.02);
     const label = await sharp(badge).resize({ width: Math.min(info.width - margin * 2, Math.round(info.width * 0.46)) }).toBuffer({ resolveWithObject: true });
     return sharp(data)
-      .composite([{ input: label.data, left: margin, top: info.height - label.info.height - margin }])
+      .composite([
+        { input: wash, blend: "soft-light" },
+        { input: label.data, left: margin, top: info.height - label.info.height - margin },
+      ])
       .jpeg({ quality: 88 })
       .toBuffer();
   },
