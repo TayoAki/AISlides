@@ -28,6 +28,7 @@ export default function PricingPage() {
         <Container className="pb-16 pt-10">
           <Breadcrumbs items={[{ label: "Pricing", href: "/pricing" }]} />
           <SectionHeading
+            as="h1"
             className="mt-8"
             eyebrow="Pricing"
             title="Free while we're in beta"

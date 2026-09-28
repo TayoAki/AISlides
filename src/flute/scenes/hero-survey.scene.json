@@ -9,17 +9,17 @@
     "scene": {
       "version": 3,
       "camera": {
-        "x": -220,
-        "y": 60,
-        "z": 380,
-        "perspective": 1600,
-        "rotateX": 6,
-        "rotateY": 20,
+        "x": -250,
+        "y": -130,
+        "z": 0,
+        "perspective": 1400,
+        "rotateX": 4,
+        "rotateY": 22,
         "rotateZ": 0
       },
       "focus": {
-        "distance": 1240,
-        "fStop": 6.3,
+        "distance": 1400,
+        "fStop": 8,
         "focalLength": 90,
         "maxBlur": 5
       },
@@ -41,12 +41,12 @@
           "keyframes": [
             {
               "timeMs": 0,
-              "value": -300,
+              "value": -250,
               "easing": "cinematic"
             },
             {
               "timeMs": 6500,
-              "value": 260,
+              "value": 240,
               "easing": "cinematic"
             }
           ]
@@ -59,12 +59,30 @@
           "keyframes": [
             {
               "timeMs": 0,
-              "value": 420,
+              "value": 0,
               "easing": "cinematic"
             },
             {
               "timeMs": 6500,
-              "value": 330,
+              "value": -90,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "focus"
+          },
+          "property": "distance",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 1400,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 6500,
+              "value": 1317,
               "easing": "cinematic"
             }
           ]

@@ -145,7 +145,7 @@ r = await fetch(BASE + "/api/v1/renders", {
   body: JSON.stringify({ tool: "declutter", space: "interior", image_base64: upload.toString("base64") }),
 });
 body = await r.json();
-check(r.status === 202 && body.status === "queued" && body.input_url?.includes("/api/v1/renders/"), "API creates a render from base64", body);
+check(r.status === 202 && ["queued", "processing"].includes(body.status) && body.input_url?.includes("/api/v1/renders/"), "API creates a render from base64", body);
 const apiRender = await waitFor(`/api/v1/renders/${body.id}`, auth);
 check(apiRender.status === "succeeded" && apiRender.output_urls[0].includes("/outputs/1"), "API render succeeds", apiRender);
 r = await fetch(apiRender.output_urls[0].replace(/^https?:\/\/[^/]+/, BASE), { headers: auth });

@@ -44,6 +44,8 @@ export function Footer() {
             <Link href="/terms" className="hover:text-ink">Terms</Link>
             <span className="mx-2">·</span>
             <Link href="/help" className="hover:text-ink">Help</Link>
+            <span className="mx-2">·</span>
+            <Link href="/credits" className="hover:text-ink">Photo credits</Link>
           </p>
         </div>
       </div>

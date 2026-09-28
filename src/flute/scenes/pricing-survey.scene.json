@@ -2,24 +2,24 @@
   "version": 1,
   "id": "pricing-survey",
   "title": "Free while in beta",
-  "description": "A slow survey along the pricing plans, with focus riding the cards.",
+  "description": "A slow survey along the pricing plans from Free to Enterprise.",
   "definition": {
     "width": 1920,
     "height": 1080,
     "scene": {
       "version": 3,
       "camera": {
-        "x": -260,
-        "y": 80,
-        "z": 420,
-        "perspective": 1600,
-        "rotateX": 8,
-        "rotateY": 18,
+        "x": -300,
+        "y": 20,
+        "z": -20,
+        "perspective": 1500,
+        "rotateX": 6,
+        "rotateY": 16,
         "rotateZ": 0
       },
       "focus": {
-        "distance": 1200,
-        "fStop": 6.3,
+        "distance": 1481,
+        "fStop": 8,
         "focalLength": 90,
         "maxBlur": 5
       },
@@ -41,30 +41,12 @@
           "keyframes": [
             {
               "timeMs": 0,
-              "value": -320,
+              "value": -300,
               "easing": "cinematic"
             },
             {
               "timeMs": 6500,
               "value": 300,
-              "easing": "cinematic"
-            }
-          ]
-        },
-        {
-          "target": {
-            "kind": "focus"
-          },
-          "property": "distance",
-          "keyframes": [
-            {
-              "timeMs": 0,
-              "value": 1180,
-              "easing": "cinematic"
-            },
-            {
-              "timeMs": 6500,
-              "value": 1240,
               "easing": "cinematic"
             }
           ]

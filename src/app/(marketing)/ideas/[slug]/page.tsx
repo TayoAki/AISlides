@@ -76,7 +76,7 @@ export default async function IdeasPage({ params }: PageProps<"/ideas/[slug]">) 
             );
           })}
         </ol>
-        <p className="mt-10 text-sm text-muted">Photos show real spaces for inspiration. Your results depend on your own photo and settings.</p>
+        <p className="mt-10 text-sm text-muted">Images show example spaces for inspiration and are not Roomwright renders. Your results depend on your own photo and settings.</p>
       </Container>
 
       <section className="border-t border-line/70 py-20">

@@ -27,7 +27,9 @@ export async function DELETE(request: Request) {
   const db = getDb();
   const renders = db.prepare("SELECT id FROM renders WHERE user_id = ?").all(user.id) as { id: string }[];
   db.prepare("DELETE FROM users WHERE id = ?").run(user.id);
-  await Promise.all(renders.map((r) => deleteRenderMedia(r.id)));
+  // The account is gone at this point; file cleanup problems are logged, not reported as failure.
+  const cleanup = await Promise.allSettled(renders.map((r) => deleteRenderMedia(r.id)));
+  for (const c of cleanup) if (c.status === "rejected") console.error("account media cleanup failed", c.reason);
   await destroySession();
   return NextResponse.json({ ok: true });
 }

@@ -9,9 +9,10 @@ export default function ToolsPlating() {
   return (
     <Surface
       id="toolkit"
-      style={{ width: 1440, height: 860 }}
+      // The section paint sits on the group itself so the card surfaces render above it.
+      style={{ width: 1440, height: 1010, background: "var(--surface-2)" }}
       content={
-        <div className="h-full bg-surface-2">
+        <div style={{ width: 1440 }}>
           <Container className="pt-20">
             <div className="flex items-end justify-between gap-6">
               <SectionHeading
@@ -27,7 +28,7 @@ export default function ToolsPlating() {
         </div>
       }
     >
-      <div className="absolute inset-x-0 top-[330px]" style={{ transformStyle: "preserve-3d" }}>
+      <div className="absolute inset-x-0 top-[250px]" style={{ transformStyle: "preserve-3d" }}>
         <Container>
           <div className="grid grid-cols-4 gap-4" style={{ transformStyle: "preserve-3d" }}>
             {TOOL_IDS.map((id) => (

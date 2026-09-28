@@ -107,7 +107,7 @@ export default function ApiDocsPage() {
           <p>
             Base URL: <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-sm">{BASE}</code>. Requests and responses use JSON, except image uploads (multipart) and image downloads (JPEG).
           </p>
-          <p>Rendering is asynchronous. Creating a render returns immediately with status <code>queued</code>; poll the render every 2–3 seconds until it is <code>succeeded</code> or <code>failed</code>. Most renders finish in 10–40 seconds.</p>
+          <p>Rendering is asynchronous. Creating a render returns immediately with status <code>queued</code> (or <code>processing</code> if work has already started); poll the render every 2–3 seconds until it is <code>succeeded</code> or <code>failed</code>. Most renders finish in 10–40 seconds.</p>
           <p>The API is in beta and free to use. API renders count toward the same daily allowance as the studio.</p>
 
           <H2 id="authentication">Authentication</H2>
@@ -163,7 +163,7 @@ const res = await fetch("${BASE}/renders", {
     image_base64: (await readFile("house.jpg")).toString("base64"),
   }),
 });
-const render = await res.json(); // { id: "r_...", status: "queued", ... }`}</Code>
+const render = await res.json(); // { id: "r_...", status: "queued" | "processing", ... }`}</Code>
           <p>
             A successful request returns <code>202 Accepted</code> with the <a href="#object">render object</a>.
           </p>

@@ -211,8 +211,9 @@ async function processRender(id: string) {
     });
     await writeMedia(id, "output-1", output);
     await writeMedia(id, "output-1-thumb", await thumbnail(output));
-    // Skip the update if the render was deleted while it was processing.
-    db.prepare("UPDATE renders SET status = 'succeeded', outputs = 1, completed_at = ? WHERE id = ? AND status = 'processing'").run(now(), id);
+    const done = db.prepare("UPDATE renders SET status = 'succeeded', outputs = 1, completed_at = ? WHERE id = ? AND status = 'processing'").run(now(), id);
+    // The design (or its account) was deleted while rendering: don't leave its files behind.
+    if (done.changes === 0 && !db.prepare("SELECT 1 FROM renders WHERE id = ?").get(id)) await deleteRenderMedia(id).catch(() => {});
   } catch (e) {
     const message = e instanceof ProviderError ? e.userMessage : "Something went wrong while rendering. Please try again.";
     console.error(`[render ${id}] failed:`, e instanceof Error ? e.message : e);
@@ -250,7 +251,7 @@ export async function rerunRender(id: string, userId: string, overrides: Partial
 
 export async function deleteRender(id: string, userId: string) {
   const res = getDb().prepare("DELETE FROM renders WHERE id = ? AND user_id = ?").run(id, userId);
-  if (res.changes) await deleteRenderMedia(id);
+  if (res.changes) await deleteRenderMedia(id).catch((e) => console.error(`[render ${id}] media cleanup failed`, e));
   return res.changes > 0;
 }
 

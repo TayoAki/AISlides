@@ -21,6 +21,16 @@ const focus = (from, to, durationMs) => ({
   ],
 });
 
+// Focus: for a surface at z=0 the point at frame center sits at roughly
+// perspective + camera.z * cos(rotateY) * cos(rotateX) along the viewing axis.
+const centerDepth = (c) => Math.round(c.perspective + c.z * Math.cos((c.rotateY * Math.PI) / 180) * Math.cos((c.rotateX * Math.PI) / 180));
+
+const heroCam = { x: -250, y: -130, z: 0, perspective: 1400, rotateX: 4, rotateY: 22, rotateZ: 0 };
+const studioCam = { x: 360, y: -110, z: -170, perspective: 1400, rotateX: 8, rotateY: -16, rotateZ: 0 };
+const toolsCam = { x: -90, y: 40, z: -50, perspective: 1500, rotateX: 16, rotateY: 12, rotateZ: 0 };
+const ctaCam = { x: -240, y: -220, z: 260, perspective: 1600, rotateX: 3, rotateY: -6, rotateZ: 0 };
+const pricingCam = { x: -300, y: 20, z: -20, perspective: 1500, rotateX: 6, rotateY: 16, rotateZ: 0 };
+
 const recipes = [
   {
     version: 1,
@@ -30,13 +40,12 @@ const recipes = [
     definition: {
       width: 1920,
       height: 1080,
-      scene: {
-        version: 3,
-        camera: { x: -220, y: 60, z: 380, perspective: 1600, rotateX: 6, rotateY: 20, rotateZ: 0 },
-        focus: { distance: 1240, fStop: 6.3, focalLength: 90, maxBlur: 5 },
-        nodes: [{ id: "landing" }],
+      scene: { version: 3, camera: heroCam, focus: { distance: centerDepth(heroCam), fStop: 8, focalLength: 90, maxBlur: 5 }, nodes: [{ id: "landing" }] },
+      motion: {
+        durationMs: 6500,
+        speed: 0.5,
+        tracks: [cam("x", -250, 240, 6500), cam("z", 0, -90, 6500), focus(centerDepth(heroCam), centerDepth({ ...heroCam, z: -90 }), 6500)],
       },
-      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("x", -300, 260, 6500), cam("z", 420, 330, 6500)] },
     },
   },
   {
@@ -47,13 +56,8 @@ const recipes = [
     definition: {
       width: 1920,
       height: 1080,
-      scene: {
-        version: 3,
-        camera: { x: 260, y: -120, z: 520, perspective: 1500, rotateX: 10, rotateY: -18, rotateZ: 0 },
-        focus: { distance: 1120, fStop: 5.6, focalLength: 90, maxBlur: 5 },
-        nodes: [{ id: "studio" }],
-      },
-      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("y", -220, 240, 6500), cam("x", 300, 230, 6500)] },
+      scene: { version: 3, camera: studioCam, focus: { distance: centerDepth(studioCam), fStop: 7, focalLength: 90, maxBlur: 5 }, nodes: [{ id: "studio" }] },
+      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("y", -110, 250, 6500)] },
     },
   },
   {
@@ -66,8 +70,8 @@ const recipes = [
       height: 1080,
       scene: {
         version: 3,
-        camera: { x: -120, y: 40, z: 260, perspective: 1700, rotateX: 14, rotateY: 14, rotateZ: 0 },
-        focus: { distance: 1440, fStop: 8, focalLength: 80, maxBlur: 5 },
+        camera: toolsCam,
+        focus: { distance: centerDepth(toolsCam), fStop: 8, focalLength: 90, maxBlur: 5 },
         nodes: [{ id: "toolkit" }, ...TOOL_IDS.map((id) => ({ id: `tool-${id}`, parentId: "toolkit" }))],
       },
       motion: {
@@ -75,7 +79,8 @@ const recipes = [
         speed: 0.5,
         tracks: [
           ...createCascadeTracks({ items: TOOL_IDS.map((id) => ({ id: `tool-${id}` })), depth: 320, depthStep: 26, staggerMs: 150, entranceMs: 2200 }),
-          cam("x", -220, 160, 6500),
+          cam("x", -90, 40, 6500),
+          cam("y", 40, 20, 6500),
         ],
       },
     },
@@ -84,17 +89,28 @@ const recipes = [
     version: 1,
     id: "pricing-survey",
     title: "Free while in beta",
-    description: "A slow survey along the pricing plans, with focus riding the cards.",
+    description: "A slow survey along the pricing plans from Free to Enterprise.",
     definition: {
       width: 1920,
       height: 1080,
-      scene: {
-        version: 3,
-        camera: { x: -260, y: 80, z: 420, perspective: 1600, rotateX: 8, rotateY: 18, rotateZ: 0 },
-        focus: { distance: 1200, fStop: 6.3, focalLength: 90, maxBlur: 5 },
-        nodes: [{ id: "pricing" }],
+      scene: { version: 3, camera: pricingCam, focus: { distance: centerDepth(pricingCam), fStop: 8, focalLength: 90, maxBlur: 5 }, nodes: [{ id: "pricing" }] },
+      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("x", -300, 300, 6500)] },
+    },
+  },
+  {
+    version: 1,
+    id: "cta-endcard",
+    title: "Start designing free",
+    description: "A slow push toward the real call to action, used as the promo's closing card.",
+    definition: {
+      width: 1920,
+      height: 1080,
+      scene: { version: 3, camera: ctaCam, focus: { distance: centerDepth(ctaCam), fStop: 9, focalLength: 90, maxBlur: 4 }, nodes: [{ id: "cta" }] },
+      motion: {
+        durationMs: 4000,
+        speed: 0.5,
+        tracks: [cam("z", 260, 60, 4000), cam("rotateY", -6, 0, 4000), focus(centerDepth(ctaCam), centerDepth({ ...ctaCam, z: 60, rotateY: 0 }), 4000)],
       },
-      motion: { durationMs: 6500, speed: 0.5, tracks: [cam("x", -320, 300, 6500), focus(1180, 1240, 6500)] },
     },
   },
 ];

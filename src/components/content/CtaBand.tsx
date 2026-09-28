@@ -25,7 +25,7 @@ export function CtaBand({
                 {primary.label}
               </ButtonLink>
               {secondary && (
-                <ButtonLink href={secondary.href} variant="ghost" size="lg" className="text-brand-ink hover:bg-white/10">
+                <ButtonLink href={secondary.href} variant="onDark" size="lg">
                   {secondary.label}
                 </ButtonLink>
               )}

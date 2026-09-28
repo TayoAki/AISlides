@@ -34,7 +34,8 @@ export async function readMedia(renderId: string, file: MediaFile) {
 }
 
 export async function deleteRenderMedia(renderId: string) {
-  await fs.rm(renderDir(renderId), { recursive: true, force: true });
+  // Retries cover a render that is still writing files while it is being deleted.
+  await fs.rm(renderDir(renderId), { recursive: true, force: true, maxRetries: 5, retryDelay: 150 });
 }
 
 /** Reads a bundled sample photo from public/images/library by key. */

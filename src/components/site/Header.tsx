@@ -13,14 +13,19 @@ type MenuGroup = { title: string; links: NavLink[] };
 type Menu = { id: string; label: string; groups: MenuGroup[]; footer: NavLink };
 
 const byHref = (hrefs: string[]) => hrefs.map((h) => USE_CASE_LINKS.find((l) => l.href === h)!).filter(Boolean);
+const features = (hrefs: string[]) => hrefs.map((h) => FEATURE_LINKS.find((l) => l.href === h)!).filter(Boolean);
 
 const MENUS: Menu[] = [
   {
     id: "features",
     label: "Features",
     groups: [
-      { title: "Transform", links: FEATURE_LINKS.slice(1, 10) },
-      { title: "Create & refine", links: FEATURE_LINKS.slice(10) },
+      { title: "Transform", links: features(["/features/redesign", "/features/fill-spaces", "/features/decor-staging", "/features/furniture-removal", "/features/design-transfer", "/features/sky-colors"]) },
+      { title: "Change the details", links: features(["/features/paint-visualizer", "/features/colors-textures", "/features/material-swap", "/features/precision-edit", "/features/room-composer"]) },
+      {
+        title: "Create & upcoming",
+        links: features(["/features/sketch-to-render", "/features/text-to-design", "/features/furniture-creator", "/features/furniture-finder", "/features/design-critique", "/features/design-advisor", "/features/smart-home"]),
+      },
     ],
     footer: { label: "See every feature", href: "/ai-features" },
   },

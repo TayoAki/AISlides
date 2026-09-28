@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "id": "cta-endcard",
+  "title": "Start designing free",
+  "description": "A slow push toward the real call to action, used as the promo's closing card.",
+  "definition": {
+    "width": 1920,
+    "height": 1080,
+    "scene": {
+      "version": 3,
+      "camera": {
+        "x": -240,
+        "y": -220,
+        "z": 260,
+        "perspective": 1600,
+        "rotateX": 3,
+        "rotateY": -6,
+        "rotateZ": 0
+      },
+      "focus": {
+        "distance": 1858,
+        "fStop": 9,
+        "focalLength": 90,
+        "maxBlur": 4
+      },
+      "nodes": [
+        {
+          "id": "cta"
+        }
+      ]
+    },
+    "motion": {
+      "durationMs": 4000,
+      "speed": 0.5,
+      "tracks": [
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "z",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 260,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 4000,
+              "value": 60,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "camera"
+          },
+          "property": "rotateY",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": -6,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 4000,
+              "value": 0,
+              "easing": "cinematic"
+            }
+          ]
+        },
+        {
+          "target": {
+            "kind": "focus"
+          },
+          "property": "distance",
+          "keyframes": [
+            {
+              "timeMs": 0,
+              "value": 1858,
+              "easing": "cinematic"
+            },
+            {
+              "timeMs": 4000,
+              "value": 1660,
+              "easing": "cinematic"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -6,7 +6,7 @@ export function Container({ className, children }: { className?: string; childre
   return <div className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
 }
 
-type Variant = "primary" | "secondary" | "ghost" | "accent" | "inverse";
+type Variant = "primary" | "secondary" | "ghost" | "accent" | "inverse" | "onDark";
 type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
@@ -15,6 +15,7 @@ const variants: Record<Variant, string> = {
   ghost: "text-ink hover:bg-ink/5",
   accent: "bg-accent text-white hover:bg-accent-strong shadow-soft",
   inverse: "bg-bg text-ink hover:bg-surface",
+  onDark: "border border-brand-ink/30 text-brand-ink hover:bg-brand-ink/10",
 };
 const sizes: Record<Size, string> = {
   sm: "h-9 px-3.5 text-sm gap-1.5",
@@ -80,18 +81,20 @@ export function SectionHeading({
   title,
   subtitle,
   align = "left",
+  as: Heading = "h2",
   className,
 }: {
   eyebrow?: string;
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "left" | "center";
+  as?: "h1" | "h2";
   className?: string;
 }) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <Eyebrow className="mb-3">{eyebrow}</Eyebrow>}
-      <h2 className="text-3xl leading-[1.12] text-ink sm:text-[2.6rem]">{title}</h2>
+      <Heading className="text-3xl leading-[1.12] text-ink sm:text-[2.6rem]">{title}</Heading>
       {subtitle && <p className="mt-4 text-lg leading-relaxed text-muted">{subtitle}</p>}
     </div>
   );
