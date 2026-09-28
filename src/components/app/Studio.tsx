@@ -238,6 +238,8 @@ export function Studio({
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body?.error?.message ?? "Something went wrong. Please try again.");
       router.push(`/app/designs/${body.id}`);
+      // Layouts are served from the client cache on navigation; refresh so the usage meter counts this render.
+      router.refresh();
     } catch (e) {
       setError((e as Error).message);
       setBusy(false);

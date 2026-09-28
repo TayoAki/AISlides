@@ -42,13 +42,17 @@ export function DesignView({ initial }: { initial: RenderJson }) {
     const tick = setInterval(() => setElapsed(Math.round((Date.now() - started.current) / 1000)), 1000);
     const poll = setInterval(async () => {
       const res = await fetch(`/api/renders/${render.id}`, { cache: "no-store" }).catch(() => null);
-      if (res?.ok) setRender(await res.json());
+      if (!res?.ok) return;
+      const next = (await res.json()) as RenderJson;
+      setRender(next);
+      // A failed render gives its allowance back, so update the usage meter once it settles.
+      if (!PENDING.has(next.status)) router.refresh();
     }, 1500);
     return () => {
       clearInterval(tick);
       clearInterval(poll);
     };
-  }, [pending, render.id]);
+  }, [pending, render.id, router]);
 
   const tool = TOOLS[render.tool];
   const Icon = TOOL_ICONS[render.tool];
@@ -70,6 +74,7 @@ export function DesignView({ initial }: { initial: RenderJson }) {
       return;
     }
     router.push(`/app/designs/${body.id}`);
+    router.refresh();
   }
 
   async function remove() {
